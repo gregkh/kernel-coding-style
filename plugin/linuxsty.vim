@@ -8,7 +8,7 @@
 " and various user comments.
 
 if exists("g:loaded_linuxsty")
-    finish
+    finish
 endif
 let g:loaded_linuxsty = 1
 
