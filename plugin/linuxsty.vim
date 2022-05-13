@@ -20,6 +20,11 @@
 " vimrc.
 "
 "   let g:linuxsty_save_path = 1
+"
+" If you want to have highlighting for coding style errors turned off by
+" default, you can define the following option in your vimrc:
+"
+"   let g:linuxsty_highlight_off = 1
 
 if exists("g:loaded_linuxsty")
     finish
@@ -27,6 +32,7 @@ endif
 let g:loaded_linuxsty = 1
 
 let g:linuxsty_save_path = get(g:, 'linuxsty_save_path', 0)
+let g:linuxsty_highlight_off = get(g:, 'linuxsty_highlight_off', 0)
 
 set wildignore+=*.ko,*.mod.c,*.order,modules.builtin
 
@@ -109,6 +115,21 @@ function s:LinuxHighlighting()
     " something
     autocmd InsertEnter * match LinuxError /\s\+\%#\@<!$/
     autocmd InsertLeave * match LinuxError /\s\+$/
+
+    if (g:linuxsty_highlight_off)
+        call s:LinuxHighlightToggle(0)
+    endif
+endfunction
+
+command! LinuxCodingStyleHighlightOn call s:LinuxHighlightToggle(1)
+command! LinuxCodingStyleHighlightOff call s:LinuxHighlightToggle(0)
+
+function s:LinuxHighlightToggle(enabled)
+    if (a:enabled)
+        highlight clear LinuxError
+    else
+        highlight link LinuxError NONE
+    endif
 endfunction
 
 function s:PathExistInCacheFile(cache_file, path)
