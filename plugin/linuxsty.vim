@@ -18,6 +18,8 @@ if exists("g:loaded_linuxsty")
 endif
 let g:loaded_linuxsty = 1
 
+let g:linuxsty_save_path = get(g:, 'linuxsty_save_path', 0)
+
 set wildignore+=*.ko,*.mod.c,*.order,modules.builtin
 
 augroup linuxsty
@@ -57,6 +59,7 @@ function! s:LinuxCodingStyle()
     call s:LinuxFormatting()
     call s:LinuxKeywords()
     call s:LinuxHighlighting()
+    call s:LinuxSavePath()
 endfunction
 
 function s:LinuxFormatting()
@@ -91,5 +94,38 @@ function s:LinuxHighlighting()
     autocmd InsertEnter * match LinuxError /\s\+\%#\@<!$/
     autocmd InsertLeave * match LinuxError /\s\+$/
 endfunction
+
+function s:PathExistInCacheFile(cache_file, path)
+    if !filereadable(a:cache_file)
+        return 0
+    endif
+
+    let lines = readfile(a:cache_file)
+    for line in lines
+        if line == a:path
+            return 1
+        endif
+    endfor
+
+    return 0
+endfunction
+
+" $HOME/.vim/.linuxsty
+let s:path_cache_file = split(&runtimepath, ',')[0] . '/.linuxsty'
+let s:path = fnamemodify(expand('%:p'), ':h')
+
+function s:LinuxSavePath()
+    if g:linuxsty_save_path
+        if !s:PathExistInCacheFile(s:path_cache_file, s:path)
+            call writefile([s:path], s:path_cache_file, 'a')
+        endif
+    endif
+endfunction
+
+if g:linuxsty_save_path
+    if s:PathExistInCacheFile(s:path_cache_file, s:path)
+        call s:LinuxCodingStyle()
+    endif
+endif
 
 " vim: ts=4 et sw=4
