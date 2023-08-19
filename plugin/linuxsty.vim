@@ -12,6 +12,12 @@
 " options will be applied only if "/linux/" or "/kernel" is in buffer's path.
 "
 "   let g:linuxsty_patterns = [ "/linux/", "/kernel/" ]
+"
+" If you want to save the current file's directory and automatically call
+" LinuxCodingStyle next time, you can define the following option in your
+" vimrc.
+"
+"   let g:linuxsty_save_path = 1
 
 if exists("g:loaded_linuxsty")
     finish
