@@ -34,6 +34,12 @@ only projects under /usr/src/ and /linux with the following:
 
     let g:linuxsty_patterns = [ "/usr/src/", "/linux" ]
 
+If you want to save the current file's directory and automatically call
+LinuxCodingStyle next time, you can define the following option in your
+vimrc:
+
+    let g:linuxsty_save_path = 1
+
 If you want to enable the coding style on demand without checking the filetype, 
 you can use the :LinuxCodingStyle command. For instance, you can map it with 
 the following in your vimrc:
