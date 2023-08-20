@@ -1,6 +1,8 @@
 " Vim plugin to fit the Linux kernel coding style and help kernel development
-" Maintainer:   Vivien Didelot <vivien.didelot@savoirfairelinux.com>
+" Maintainer:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 " License:      Distributed under the same terms as Vim itself.
+"
+" Originally developed by Vivien Didelot <vivien.didelot@savoirfairelinux.com>
 "
 " This script is inspired from an article written by Bart:
 " http://www.jukie.net/bart/blog/vim-and-linux-coding-style

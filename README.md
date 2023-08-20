@@ -7,13 +7,14 @@ It will automatically apply known rules to kernel related files, such as .c,
 .h, Kconfig and patch files. The main rules are about indentation and syntax
 error highlighting (like exceeding 80 chars).
 
-If you have any comments, fixes or requests, feel free to contact me or send me
-a patch. The development also takes place on its official [Github 
-repository](https://github.com/vivien/vim-linux-coding-style).
+The original plugin was written by Vivien Didelot, developed in this
+[Github repository](https://github.com/vivien/vim-linux-coding-style) and availble
+at [vim.org](www.vim.org), script ID [4369](http://www.vim.org/scripts/script.php?script_id=4369)
+but those locations are now out-of-date.
 
-The plugin is also available at [vim.org](www.vim.org), script ID 
-[4369](http://www.vim.org/scripts/script.php?script_id=4369).
- 
+The current development location for this repo can be found in this
+[Github repository](https://github.com/gregkh/vim-linux-coding-style).
+
 ## Installation
 
 You can just drop the linuxsty.vim file in your ~/.vim/plugin directory. 
