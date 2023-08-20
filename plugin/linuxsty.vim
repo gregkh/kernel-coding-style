@@ -95,6 +95,10 @@ function s:LinuxHighlighting()
     syn match LinuxError / \+\ze\t/     " spaces before tab
     syn match LinuxError /\%>100v[^()\{\}\[\]<>]\+/ " virtual column 101 and more
 
+    " __deprecated should not be used anymore, please see
+    " include/linux/compiler_attributes.h for why.
+    syn match LinuxError /\<__deprecated\>/
+
     " Highlight trailing whitespace, unless we're in insert mode and the
     " cursor's placed right after the whitespace. This prevents us from having
     " to put up with whitespace being highlighted in the middle of typing
