@@ -83,7 +83,9 @@ endfunction
 
 function s:LinuxKeywords()
     syn keyword cStatement fallthrough
-    syn keyword cStorageClass noinline __must_check __pure __weak __noclone
+    syn keyword cStorageClass noinline __always_inline __must_check
+    syn keyword cStorageClass __pure __weak __noclone
+    syn keyword cStorageClass __free __cleanup
     syn keyword cStorageClass __used __always_unused __maybe_unused
     syn keyword cOperator likely unlikely
     syn keyword cType u8 u16 u32 u64 s8 s16 s32 s64
