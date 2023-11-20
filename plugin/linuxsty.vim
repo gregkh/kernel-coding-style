@@ -152,10 +152,10 @@ if g:linuxsty_save_path
 endif
 
 if g:linuxsty_identifier
-  autocmd BufReadPost *
-    \ if getline(1) =~ 'SPDX-License-Identifier:' |
-    \   exe "LinuxCodingStyle" |
-    \ endif
+    autocmd BufReadPost *
+        \ if getline(1) =~ 'SPDX-License-Identifier:' |
+        \     exe "LinuxCodingStyle" |
+        \ endif
 endif
 
 " vim: ts=4 et sw=4
