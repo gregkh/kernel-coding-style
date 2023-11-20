@@ -20,6 +20,12 @@
 " vimrc.
 "
 "   let g:linuxsty_save_path = 1
+"
+" If you want to call LinuxCodingStyle automatically when the first line has
+" 'SPDX-License-Identifier:', you can define the following option in your
+" vimrc.
+"
+"   let g:linuxsty_identifier = 1
 
 if exists("g:loaded_linuxsty")
     finish
@@ -27,6 +33,7 @@ endif
 let g:loaded_linuxsty = 1
 
 let g:linuxsty_save_path = get(g:, 'linuxsty_save_path', 0)
+let g:linuxsty_identifier = get(g:, 'linuxsty_identifier', 0)
 
 set wildignore+=*.ko,*.mod.c,*.order,modules.builtin
 
@@ -142,6 +149,13 @@ if g:linuxsty_save_path
     if s:PathExistInCacheFile(s:path_cache_file, s:path)
         call s:LinuxCodingStyle()
     endif
+endif
+
+if g:linuxsty_identifier
+  autocmd BufReadPost *
+    \ if getline(1) =~ 'SPDX-License-Identifier:' |
+    \   exe "LinuxCodingStyle" |
+    \ endif
 endif
 
 " vim: ts=4 et sw=4
