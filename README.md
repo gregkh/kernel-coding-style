@@ -2,6 +2,7 @@
 
 This plugin is meant to help you respecting the Linux kernel coding style,
 described at: https://www.kernel.org/doc/Documentation/process/coding-style.rst
+HTML rendering: https://www.kernel.org/doc/html/latest/process/coding-style.html
 
 It will automatically apply known rules to kernel related files, such as .c,
 .h, Kconfig and patch files. The main rules are about indentation and syntax
