@@ -5,7 +5,7 @@ described at: https://www.kernel.org/doc/Documentation/process/coding-style.rst
 
 It will automatically apply known rules to kernel related files, such as .c,
 .h, Kconfig and patch files. The main rules are about indentation and syntax
-error highlighting (like exceeding 80 chars).
+error highlighting (like exceeding 100 chars).
 
 The original plugin was written by Vivien Didelot, developed in this
 [Github repository](https://github.com/vivien/vim-linux-coding-style) and availble
