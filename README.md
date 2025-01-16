@@ -19,18 +19,18 @@ The current development location for this repo can be found in this
 
 ## Installation
 
-You can just drop the linuxsty.vim file in your ~/.vim/plugin directory. 
-Alternatively you can use the Git repository with a manager such as 
+You can just drop the linuxsty.vim file in your ~/.vim/plugin directory.
+Alternatively you can use the Git repository with a manager such as
 [Pathogen](https://github.com/tpope/vim-pathogen).
 
 ## Usage
 
-By default the Linux coding style is enabled for any file known to the Linux 
+By default the Linux coding style is enabled for any file known to the Linux
 project (C files, headers, patches, Kconfig, etc.).
 
-If you prefer a finer control and apply it only on some files, define 
-a "g:linuxsty_patterns" array in your vimrc and the style will be applied only 
-if the buffer's path matches one of the pattern. For instance, you can match 
+If you prefer a finer control and apply it only on some files, define
+a "g:linuxsty_patterns" array in your vimrc and the style will be applied only
+if the buffer's path matches one of the pattern. For instance, you can match
 only projects under /usr/src/ and /linux with the following:
 
     let g:linuxsty_patterns = [ "/usr/src/", "/linux" ]
@@ -41,13 +41,13 @@ vimrc:
 
     let g:linuxsty_save_path = 1
 
-If you want to enable the coding style on demand without checking the filetype, 
-you can use the :LinuxCodingStyle command. For instance, you can map it with 
+If you want to enable the coding style on demand without checking the filetype,
+you can use the :LinuxCodingStyle command. For instance, you can map it with
 the following in your vimrc:
 
     nnoremap <silent> <leader>a :LinuxCodingStyle<cr>
 
 ## License
 
-Copyright (c) Vivien Didelot. Distributed under the same terms as Vim itself. 
+Copyright (c) Vivien Didelot. Distributed under the same terms as Vim itself.
 See :help license.
