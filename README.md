@@ -47,6 +47,18 @@ the following in your vimrc:
 
     nnoremap <silent> <leader>a :LinuxCodingStyle<cr>
 
+If you want to have highlighting for coding style errors turned off by default,
+you can define the following option in your vimrc:
+
+    let g:linuxsty_highlight_off = 1
+
+Moreover, the highlighting can be easily turned on/off via the
+`:LinuxCodingStyleHighlightOn` and `LinuxCodingStyleHighlightOff` commands.
+For instance, you may add the following mappings in your vimrc:
+
+    nnoremap <silent> <leader>he :LinuxCodingStyleHighlightOn<cr>
+    nnoremap <silent> <leader>hd :LinuxCodingStyleHighlightOff<cr>
+
 ## License
 
 Copyright (c) Vivien Didelot. Distributed under the same terms as Vim itself.
