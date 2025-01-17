@@ -4,8 +4,8 @@ This plugin is meant to help you respecting the Linux kernel coding style,
 described at: https://www.kernel.org/doc/Documentation/process/coding-style.rst
 HTML rendering: https://www.kernel.org/doc/html/latest/process/coding-style.html
 
-It will automatically apply known rules to kernel related files, such as .c,
-.h, Kconfig and patch files. The main rules are about indentation and syntax
+It will automatically apply known rules to kernel related files, such as `.c`,
+`.h`, `Kconfig` and patch files. The main rules are about indentation and syntax
 error highlighting (like exceeding 100 chars).
 
 The original plugin was written by Vivien Didelot, developed in this
@@ -19,7 +19,7 @@ The current development location for this repo can be found in this
 
 ## Installation
 
-You can just drop the linuxsty.vim file in your ~/.vim/plugin directory.
+You can just drop the `linuxsty.vim` file in your `~/.vim/plugin` directory.
 Alternatively you can use the Git repository with a manager such as
 [Pathogen](https://github.com/tpope/vim-pathogen).
 
@@ -28,22 +28,22 @@ Alternatively you can use the Git repository with a manager such as
 By default the Linux coding style is enabled for any file known to the Linux
 project (C files, headers, patches, Kconfig, etc.).
 
-If you prefer a finer control and apply it only on some files, define
-a "g:linuxsty_patterns" array in your vimrc and the style will be applied only
+If you prefer a finer control and apply it only on some files, define a
+`g:linuxsty_patterns` array in your `vimrc` and the style will be applied only
 if the buffer's path matches one of the pattern. For instance, you can match
-only projects under /usr/src/ and /linux with the following:
+only projects under `/usr/src/` and `/linux` with the following:
 
     let g:linuxsty_patterns = [ "/usr/src/", "/linux" ]
 
 If you want to save the current file's directory and automatically call
-LinuxCodingStyle next time, you can define the following option in your
-vimrc:
+`:LinuxCodingStyle` next time, you can define the following option in your
+`vimrc`:
 
     let g:linuxsty_save_path = 1
 
 If you want to enable the coding style on demand without checking the filetype,
-you can use the :LinuxCodingStyle command. For instance, you can map it with
-the following in your vimrc:
+you can use the `:LinuxCodingStyle` command. For instance, you can map it with
+the following in your `vimrc`:
 
     nnoremap <silent> <leader>a :LinuxCodingStyle<cr>
 
