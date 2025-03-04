@@ -105,6 +105,9 @@ function s:LinuxHighlighting()
     " include/linux/compiler_attributes.h for why.
     syn match LinuxError /\<__deprecated\>/
 
+    " highlight various for_each() variants
+    syn match cRepeat /\v^\s*\zs((h)?list_|device_)?for_each(_\w+)?(\()@=/
+
     " Highlight trailing whitespace, unless we're in insert mode and the
     " cursor's placed right after the whitespace. This prevents us from having
     " to put up with whitespace being highlighted in the middle of typing
