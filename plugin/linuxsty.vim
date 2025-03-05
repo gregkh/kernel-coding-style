@@ -17,9 +17,14 @@
 "
 " If you want to save the current file's directory and automatically call
 " LinuxCodingStyle next time, you can define the following option in your
-" vimrc.
+" vimrc:
 "
 "   let g:linuxsty_save_path = 1
+"
+" To override the default text width for C kernel files define the following
+" option in your vimrc:
+"
+"   let g:linuxsty_text_width = 80
 
 if exists("g:loaded_linuxsty")
     finish
@@ -27,6 +32,7 @@ endif
 let g:loaded_linuxsty = 1
 
 let g:linuxsty_save_path = get(g:, 'linuxsty_save_path', 0)
+let g:linuxsty_text_width = get(g:, 'linuxsty_text_width', 100)
 
 set wildignore+=*.ko,*.mod.c,*.order,modules.builtin
 
@@ -74,7 +80,7 @@ function s:LinuxFormatting()
     setlocal tabstop=8
     setlocal shiftwidth=8
     setlocal softtabstop=8
-    setlocal textwidth=100
+    execute "setlocal textwidth=" . g:linuxsty_text_width
     setlocal noexpandtab
 
     setlocal cindent
