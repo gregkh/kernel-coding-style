@@ -39,7 +39,7 @@ set wildignore+=*.ko,*.mod.c,*.order,modules.builtin
 augroup linuxsty
     autocmd!
 
-    autocmd FileType c,cpp call s:LinuxConfigure()
+    autocmd FileType c,cpp call g:LinuxConfigure("settings_only")
     autocmd FileType diff setlocal ts=8
     autocmd FileType rst setlocal ts=8 sw=8 sts=8 noet
     autocmd FileType kconfig setlocal ts=8 sw=8 sts=8 noet
@@ -47,7 +47,7 @@ augroup linuxsty
     autocmd FileType make setlocal ts=8 sw=8 sts=8 noet
 augroup END
 
-function s:LinuxConfigure()
+function g:LinuxConfigure(what)
     let apply_style = 0
 
     if exists("g:linuxsty_patterns")
@@ -63,17 +63,22 @@ function s:LinuxConfigure()
     endif
 
     if apply_style
-        call s:LinuxCodingStyle()
+        call s:LinuxCodingStyle(a:what)
     endif
 endfunction
 
-command! LinuxCodingStyle call s:LinuxCodingStyle()
+command! LinuxCodingStyle call s:LinuxCodingStyle("all")
 
-function! s:LinuxCodingStyle()
-    call s:LinuxFormatting()
-    call s:LinuxKeywords()
-    call s:LinuxHighlighting()
-    call s:LinuxSavePath()
+function! s:LinuxCodingStyle(what)
+    if a:what != "settings_only"
+        call s:LinuxSyntax()
+    endif
+
+    if a:what != "syntax_only"
+        call s:LinuxFormatting()
+        call s:LinuxHighlighting()
+        call s:LinuxSavePath()
+    endif
 endfunction
 
 function s:LinuxFormatting()
@@ -87,7 +92,7 @@ function s:LinuxFormatting()
     setlocal cinoptions=:0,l1,t0,g0,(0
 endfunction
 
-function s:LinuxKeywords()
+function s:LinuxSyntax()
     syn keyword cStatement fallthrough return_ptr
     syn keyword cStorageClass noinline __always_inline __must_check
     syn keyword cStorageClass __pure __weak __noclone
@@ -98,11 +103,6 @@ function s:LinuxKeywords()
     syn keyword cType __u8 __u16 __u32 __u64 __s8 __s16 __s32 __s64
     syn keyword cType __le16 __le32 __le64 __be16 __be32 __be64
     syn keyword LinuxGuard guard scoped_guard scoped_cond_guard
-endfunction
-
-function s:LinuxHighlighting()
-    highlight default link LinuxError ErrorMsg
-    highlight default link LinuxGuard cConditional
 
     syn match LinuxError / \+\ze\t/     " spaces before tab
     syn match LinuxError /\%>100v[^()\{\}\[\]<>]\+/ " virtual column 101 and more
@@ -114,6 +114,11 @@ function s:LinuxHighlighting()
     " highlight various for_each() variants
     syn match cRepeat /\v^\s*\zs((h)?list_|device_)?for_each(_\w+)?(\()@=/
 
+    highlight default link LinuxError ErrorMsg
+    highlight default link LinuxGuard cConditional
+endfunction
+
+function s:LinuxHighlighting()
     " Highlight trailing whitespace, unless we're in insert mode and the
     " cursor's placed right after the whitespace. This prevents us from having
     " to put up with whitespace being highlighted in the middle of typing
@@ -151,7 +156,7 @@ endfunction
 
 if g:linuxsty_save_path
     if s:PathExistInCacheFile(s:path_cache_file, s:path)
-        call s:LinuxCodingStyle()
+        call s:LinuxCodingStyle("all")
     endif
 endif
 
